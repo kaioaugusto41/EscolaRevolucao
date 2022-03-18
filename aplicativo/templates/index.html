@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/menu.html' %}
+
+    <!-- ##### Best Receipe Area Start ##### -->
+    <section class="best-receipe-area">
+        <div class="container">
+            <div class="row">
+                {% for aluno in alunos %}
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <div class="receipe-content">
+                            <a href="{% url 'aluno' aluno.ra_aluno %}">
+                            {% if aluno.genero_aluno == generos.masculino %}
+                            <img src="{% static 'img/bg-img/menino.png' %}" alt="">
+                            {% else %}
+                            <img src="{% static 'img/bg-img/menina.png' %}" alt="">
+                            {% endif %}
+                                <h5 style='padding-top: 30px;'>{{aluno.nome_aluno}}</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+        
+
+            </div>
+        </div>
+    </section>
+    <!-- ##### Best Receipe Area End ##### -->
+
+{% include 'partials/footer.html' %}
+{% endblock %}
+
+

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/menu.html' %}
+
+
+
+        <!-- Receipe Slider -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="receipe-slider owl-carousel">
+                        <img src="{% static 'img/bg-img/lapis-banner.png' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Receipe Content Area -->
+        <div class="receipe-content-area">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="receipe-headline my-5">
+                            <span>{{aluno.data_nasc}}</span>
+                            <h2>{{aluno.nome_aluno}}</h2>
+                            <div class="receipe-duration">
+                                <h6>RA: {{aluno.ra_aluno}}</h6>
+                                <h6>Mãe: {{aluno.mae_aluno}}</h6>
+                                <h6>Pai: {{aluno.pai_aluno}}</h6>
+                                <h6>Endereço: {{aluno.rua_aluno}}, {{aluno.numero_aluno}} - {{aluno.bairro_aluno}}</h6>
+                                <h6>Cidade: {{aluno.cidade_aluno}}</h6>
+                                <h6>Estado: {{aluno.estado_aluno}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="receipe-headline my-5">
+                            <div>
+                                <br>
+                                {% if aluno.genero_aluno == generos.masculino %}
+                                <img src="{% static 'img/bg-img/menino.png' %}">
+                                {% else %}
+                                <img src="{% static 'img/bg-img/menina.png' %}">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% for registro in registro%}
+                <div style = 'border-top: solid 1px #959595a8;' class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="receipe-headline my-5">
+                            <h2>{{registro.materia}}</h2>
+                            <div class="receipe-duration">
+                                <h6>Professor(a): {{registro.professor}}</h6>
+                                <br>
+                                <h6>Nota 1º Trimestre: {{registro.nota_1_trim}}</h6>
+                                <h6>Nota 2º Trimestre: {{registro.nota_2_trim}} </h6>
+                                <h6>Nota 3º Trimestre: {{registro.nota_3_trim}} </h6>
+                                <h6>Nota 4º Trimestre: {{registro.nota_4_trim}} </h6>
+                                <br>
+                                <h6>Média final: {{registro.media}}<h5></h5> </h6>
+                                <br>
+                                {% if registro.media >= 7 %}
+                                <span style='color: white; font-size: 15px; width: 50%' class="badge badge-success">APROVADO!</span>
+                                {% else%}
+                                <span style='color: white; font-size: 15px; width: 50%' class="badge badge-danger">REPROVADO!</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-8">
+                        <div class="receipe-headline my-5">
+                            <br><br><br><br><br>
+                            <div class="receipe-duration">
+                                <h6>{{registro.relatorio_aluno}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+     
+
+{% include 'partials/footer.html' %}
+{% endblock %}
